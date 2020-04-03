@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All feeds</h1>
+<%= link_to "Sync", :controller => :feeds, :action => :sync %>
+
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>published </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.title , entry.url , target: :_blank %></td>
+        <td> around <%= (( Time.now - (entry.published || Time.now))/1.hour).round %> ago </td>
+        <td>  <%= entry&.published&.localtime %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

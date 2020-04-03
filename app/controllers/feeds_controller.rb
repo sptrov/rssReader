@@ -1,6 +1,16 @@
 class FeedsController < ApplicationController
+  #skip_before_action :verify_authenticity_token
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
+  def feed_entries
+    @entries = FeedEntry.all.newest
+  end
+  
+  def sync
+    FeedsHelper::sync
+
+    redirect_to entries_path
+  end
   # GET /feeds
   # GET /feeds.json
   def index
@@ -25,7 +35,6 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     @feed = Feed.new(feed_params)
-
     respond_to do |format|
       if @feed.save
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
