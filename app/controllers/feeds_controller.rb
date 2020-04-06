@@ -1,5 +1,4 @@
 class FeedsController < ApplicationController
-  #skip_before_action :verify_authenticity_token
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
   def feed_entries
@@ -11,15 +10,11 @@ class FeedsController < ApplicationController
 
     redirect_to entries_path
   end
+  
   # GET /feeds
   # GET /feeds.json
   def index
     @feeds = Feed.all
-  end
-
-  # GET /feeds/1
-  # GET /feeds/1.json
-  def show
   end
 
   # GET /feeds/new
