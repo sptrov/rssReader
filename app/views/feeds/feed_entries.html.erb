@@ -1,26 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <h1>All feeds</h1>
-<%= link_to "Sync", :controller => :feeds, :action => :sync %>
-
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>published </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @entries.each do |entry| %>
+<div class="link">
+  <%= link_to "Sync", :controller => :feeds, :action => :sync %>
+</div>
+ <% if @entries.count > 0 %>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to entry.title , entry.url , target: :_blank %></td>
-        <td> around <%= (( Time.now - (entry.published || Time.now))/1.hour).round %> ago </td>
-        <td>  <%= entry&.published&.localtime %> </td>
+      <th>Image</th>
+        <th>Title</th>
+        <th>Published </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @entries.each do |entry| %>
+        <tr>
+          <td><a href="<%=entry.url %>"><%= image_tag(entry.image || 'https://www.scientificarchives.com/assets/images/no-image-200_300.png', size: "130x130") %> </a></td>
+          <td><%= link_to entry.title , entry.url , target: :_blank %></td>
+          <td>  <%= time_ago_in_words entry.published || Time.now %> ago </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 

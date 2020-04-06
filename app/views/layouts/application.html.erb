@@ -9,7 +9,27 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+  <div class='static-header'>
+    <div class='logo-container'>
+        <a href='/'>
+        Simple RSS Reader
+        </a>
+        <div class="menu">
+        <a href='/feeds'>
+        Feeds
+        </a>
+        <a href='/entries'>
+        Entries
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class='static-container'>
     <%= yield %>
-  </body>
+  </div>
+
+
 </html>
