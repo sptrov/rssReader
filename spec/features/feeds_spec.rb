@@ -74,8 +74,6 @@ describe 'feeds', type: :feature do
 
     click_button 'Create Feed'
     expect(page).to have_content('Feed was successfully created.')
-
-    click_link 'Back'
     expect(page).to have_content(name)
    end
 end
